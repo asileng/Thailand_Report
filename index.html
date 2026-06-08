@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>泰国投资报告 - 思维导图审核系统</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 顶部导航栏 -->
+        <header class="header">
+            <div class="header-left">
+                <h1><i class="fas fa-map-marked-alt"></i> 泰国投资报告审核系统</h1>
+                <span class="subtitle">思维导图视图 - 参考资料完整性审核</span>
+            </div>
+            <div class="header-right">
+                <div class="stats">
+                    <span class="stat-item"><i class="fas fa-check-circle"></i> 已审核: <span id="reviewed-count">0</span></span>
+                    <span class="stat-item"><i class="fas fa-clock"></i> 待审核: <span id="pending-count">0</span></span>
+                    <span class="stat-item"><i class="fas fa-exclamation-circle"></i> 需补充: <span id="need-more-count">0</span></span>
+                </div>
+                <button id="export-btn" class="btn btn-primary"><i class="fas fa-download"></i> 导出审核报告</button>
+                <button id="save-btn" class="btn btn-secondary"><i class="fas fa-save"></i> 保存进度</button>
+            </div>
+        </header>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 思维导图区域 -->
+            <div class="mindmap-container" id="mindmap">
+                <div class="mindmap-loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>加载思维导图...</p>
+                </div>
+            </div>
+
+            <!-- 侧边栏 -->
+            <aside class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <h2 id="sidebar-title">选择节点查看详情</h2>
+                    <button class="close-btn" id="close-sidebar"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="sidebar-content" id="sidebar-content">
+                    <div class="placeholder">
+                        <i class="fas fa-mouse-pointer"></i>
+                        <p>点击思维导图中的节点查看详细信息</p>
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+        <!-- 审核状态图例 -->
+        <div class="legend">
+            <h3>审核状态图例</h3>
+            <div class="legend-items">
+                <span class="legend-item"><span class="dot reviewed"></span> 已审核</span>
+                <span class="legend-item"><span class="dot pending"></span> 待审核</span>
+                <span class="legend-item"><span class="dot need-more"></span> 需补充</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 注释模态框 -->
+    <div class="modal" id="note-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-sticky-note"></i> 添加审核注释</h3>
+                <button class="close-btn" id="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <textarea id="note-text" placeholder="输入审核注释...&#10;&#10;例如：&#10;- 该链接内容已过时，需要更新&#10;- 缺少2024年最新数据&#10;- 建议补充泰国东部经济走廊最新政策"></textarea>
+                <div class="note-tags">
+                    <label>快速标签：</label>
+                    <button class="tag-btn" data-tag="需要更新">需要更新</button>
+                    <button class="tag-btn" data-tag="内容缺失">内容缺失</button>
+                    <button class="tag-btn" data-tag="链接失效">链接失效</button>
+                    <button class="tag-btn" data-tag="建议补充">建议补充</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-note">取消</button>
+                <button class="btn btn-primary" id="save-note">保存注释</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 对比模态框 -->
+    <div class="modal" id="compare-modal">
+        <div class="modal-content modal-wide">
+            <div class="modal-header">
+                <h3><i class="fas fa-columns"></i> 内容对比</h3>
+                <button class="close-btn" id="close-compare"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body compare-body">
+                <div class="compare-panel">
+                    <h4>报告原文</h4>
+                    <div class="compare-content" id="original-content"></div>
+                </div>
+                <div class="compare-panel">
+                    <h4>参考资料内容</h4>
+                    <div class="compare-content" id="reference-content">
+                        <div class="fetch-loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>正在获取参考资料...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="compare-actions">
+                    <label>
+                        <input type="checkbox" id="coverage-complete"> 信息已完整覆盖
+                    </label>
+                    <label>
+                        <input type="checkbox" id="coverage-partial"> 部分覆盖，需要补充
+                    </label>
+                    <label>
+                        <input type="checkbox" id="coverage-missing"> 未覆盖，需添加新事件
+                    </label>
+                </div>
+                <button class="btn btn-primary" id="save-compare">保存评估</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="data.js"></script>
+    <script src="mindmap.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
