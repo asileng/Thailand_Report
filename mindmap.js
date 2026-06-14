@@ -257,7 +257,13 @@ class MindmapRenderer {
 
     getNodeClass(d) {
         const status = d.data.status || 'pending';
-        return `node-status-${status}`;
+        // 状态映射：pending=黄色，reviewed=绿色，need-more=红色
+        const statusClassMap = {
+            'pending': 'node-pending',
+            'reviewed': 'node-reviewed',
+            'need-more': 'node-need-more'
+        };
+        return statusClassMap[status] || 'node-pending';
     }
 
     handleClick(event, d) {
