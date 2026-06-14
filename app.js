@@ -153,6 +153,14 @@ class ThailandReportApp {
                                     <i class="fas fa-external-link-alt"></i> ${link.url}
                                 </a>
                                 <div class="link-description">${link.description}</div>
+                                <div class="link-meta">
+                                    <span class="link-badge source-${link.source_type === '原文来源' ? 'original' : link.source_type === '新闻来源' ? 'news' : 'reference'}">
+                                        ${link.source_type || '参考来源'}
+                                    </span>
+                                    <span class="link-badge content-${link.content_type === '政策原文' ? 'policy' : link.content_type === '相关新闻' ? 'news' : 'data'}">
+                                        ${link.content_type || '参考来源'}
+                                    </span>
+                                </div>
                                 <div class="link-actions">
                                     <button class="link-btn compare-btn" data-link-id="${link.id}">
                                         <i class="fas fa-columns"></i> 对比

@@ -404,6 +404,53 @@ body {
     border-left: 3px solid var(--thai-gold);
 }
 
+.link-meta {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+.link-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+/* 来源类型样式 */
+.link-badge.source-original {
+    background: #D4EDDA;
+    color: #155724;
+}
+
+.link-badge.source-news {
+    background: #FFF3CD;
+    color: #856404;
+}
+
+.link-badge.source-reference {
+    background: #D1ECF1;
+    color: #0C5460;
+}
+
+/* 内容类型样式 */
+.link-badge.content-policy {
+    background: #E8DAEF;
+    color: #6C3483;
+}
+
+.link-badge.content-news {
+    background: #FADBD8;
+    color: #922B21;
+}
+
+.link-badge.content-data {
+    background: #D5F5E3;
+    color: #1E8449;
+}
+
 .link-actions {
     display: flex;
     gap: 8px;
