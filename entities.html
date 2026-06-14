@@ -138,6 +138,29 @@
         .link-badge.新闻来源 { background: #FFF3E0; color: #F57C00; }
         .link-badge.参考来源 { background: #F3E5F5; color: #7B1FA2; }
 
+
+        .review-status {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .review-status.pending {
+            background: #FFF3CD;
+            color: #856404;
+        }
+
+        .review-status.reviewed {
+            background: #D4EDDA;
+            color: #155724;
+        }
+
+        .review-status.need-more {
+            background: #F8D7DA;
+            color: #721C24;
+        }
         .filter-bar {
             display: flex;
             gap: 15px;
@@ -227,6 +250,7 @@
                     <th>类型</th>
                     <th>年份</th>
                     <th>链接覆盖状态</th>
+                    <th>审核状态</th>
                     <th>相关链接</th>
                 </tr>
             </thead>
@@ -237,11 +261,13 @@
     </div>
 
     <script src="data.js"></script>
+    <script src="shared-data.js"></script>
     <script>
         // 实体覆盖检查逻辑
         class EntityCoverageChecker {
             constructor(data) {
                 this.data = data;
+                this.dataManager = window.reviewDataManager;
                 this.entities = this.processEntities();
                 this.init();
             }
@@ -334,7 +360,15 @@
                     );
                 }
 
-                tbody.innerHTML = filtered.map(entity => `
+                tbody.innerHTML = filtered.map(entity => {
+                    // 获取实体所在section的审核状态
+                    let sectionStatus = 'pending';
+                    if (entity.sections && entity.sections.length > 0) {
+                        const sectionId = `section_${entity.sections[0].replace('.', '_')}`;
+                        sectionStatus = this.dataManager.getStatus(sectionId);
+                    }
+
+                    return `
                     <tr>
                         <td><strong>${entity.name}</strong></td>
                         <td><span class="entity-type ${entity.type}">${entity.type}</span></td>
@@ -343,6 +377,11 @@
                             <span class="coverage-status ${entity.links.length > 0 ? 'covered' : 'uncovered'}">
                                 <i class="fas fa-${entity.links.length > 0 ? 'check-circle' : 'times-circle'}"></i>
                                 ${entity.links.length > 0 ? '已覆盖' : '未覆盖'}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="review-status ${sectionStatus}">
+                                ${sectionStatus === 'reviewed' ? '✓ 已审核' : sectionStatus === 'need-more' ? '✗ 需补充' : '○ 待审核'}
                             </span>
                         </td>
                         <td>
@@ -361,7 +400,8 @@
                             ` : '<span style="color: var(--status-need-more);">需要补充链接</span>'}
                         </td>
                     </tr>
-                `).join('');
+                    `;
+                }).join('');
             }
 
             bindEvents() {

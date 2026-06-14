@@ -4,7 +4,8 @@ class ThailandReportApp {
         this.data = reportData;
         this.mindmap = null;
         this.currentNode = null;
-        this.reviewData = this.loadReviewData();
+        this.dataManager = window.reviewDataManager;
+        this.reviewData = this.dataManager.loadData();
 
         this.init();
     }
@@ -433,12 +434,11 @@ class ThailandReportApp {
 
     // 数据持久化
     loadReviewData() {
-        const saved = localStorage.getItem('thailand_report_review');
-        return saved ? JSON.parse(saved) : {};
+        return this.dataManager.loadData();
     }
 
     saveReviewData() {
-        localStorage.setItem('thailand_report_review', JSON.stringify(this.reviewData));
+        this.dataManager.saveData(this.reviewData);
     }
 
     saveProgress() {
