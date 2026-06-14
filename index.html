@@ -4,265 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>泰国政策报告 - 多文档审核系统</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f5f7fa; color: #333; }
-
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white; padding: 16px 24px;
-            display: flex; justify-content: space-between; align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .header h1 { font-size: 20px; }
-        .header .stats { display: flex; gap: 16px; font-size: 14px; }
-
-        /* Tab Bar */
-        .tab-bar {
-            background: white; border-bottom: 2px solid #e0e0e0;
-            display: flex; padding: 0 24px; gap: 4px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-        .tab-btn {
-            padding: 12px 24px; border: none; background: transparent;
-            font-size: 14px; font-weight: 500; color: #666; cursor: pointer;
-            border-bottom: 3px solid transparent; transition: all 0.2s;
-        }
-        .tab-btn:hover { color: #333; background: #f8f9fa; }
-        .tab-btn.active { color: #667eea; border-bottom-color: #667eea; background: #f0f2ff; }
-
-        /* View Toggle */
-        .view-toggle {
-            display: flex; gap: 8px; padding: 12px 24px; background: white;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        .view-btn {
-            padding: 6px 16px; border: 1px solid #ddd; border-radius: 20px;
-            background: white; font-size: 13px; cursor: pointer; transition: all 0.2s;
-        }
-        .view-btn.active { background: #667eea; color: white; border-color: #667eea; }
-
-        /* Main Content */
-        .main-content { display: flex; height: calc(100vh - 140px); }
-
-        /* Left Panel - Sections */
-        .sections-panel {
-            flex: 1; overflow-y: auto; padding: 16px;
-            background: #f5f7fa;
-        }
-        .section-card {
-            background: white; border-radius: 8px; padding: 16px;
-            margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-            cursor: pointer; transition: all 0.2s; border-left: 4px solid #667eea;
-        }
-        .section-card:hover { transform: translateX(4px); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
-        .section-card.active { border-left-color: #764ba2; background: #f8f6ff; }
-        .section-card .number { font-size: 12px; color: #999; margin-bottom: 4px; }
-        .section-card .title { font-size: 15px; font-weight: 600; color: #333; margin-bottom: 4px; }
-        .section-card .parent { font-size: 12px; color: #667eea; }
-        .section-card .preview { font-size: 13px; color: #666; margin-top: 8px; line-height: 1.5; }
-
-        /* Right Panel - Detail / Events */
-        .detail-panel {
-            flex: 2; overflow-y: auto; padding: 24px; background: white;
-            border-left: 1px solid #e0e0e0;
-        }
-        .detail-placeholder {
-            display: flex; flex-direction: column; align-items: center;
-            justify-content: center; height: 100%; color: #999;
-        }
-        .detail-placeholder i { font-size: 48px; margin-bottom: 16px; }
-
-        /* Section Detail */
-        .section-detail { display: none; }
-        .section-detail.active { display: block; }
-        .section-detail h2 { font-size: 22px; margin-bottom: 8px; color: #333; }
-        .section-detail .meta { font-size: 13px; color: #888; margin-bottom: 16px; }
-        .section-detail .content {
-            font-size: 15px; line-height: 1.8; color: #444;
-            white-space: pre-wrap; background: #f9f9fb; padding: 16px;
-            border-radius: 8px; border: 1px solid #e8e8e8;
-        }
-
-        /* Events View */
-        .events-view { display: none; }
-        .events-view.active { display: block; }
-        .event-card {
-            background: white; border-radius: 8px; padding: 16px;
-            margin-bottom: 12px; border: 1px solid #e8e8e8;
-            transition: all 0.2s;
-        }
-        .event-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .event-card .source { font-size: 12px; color: #667eea; margin-bottom: 4px; }
-        .event-card .domain { font-size: 14px; font-weight: 600; color: #333; margin-bottom: 8px; }
-        .event-card .description { font-size: 14px; line-height: 1.6; color: #555; white-space: pre-wrap; }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .main-content { flex-direction: column; height: auto; }
-            .sections-panel { max-height: 40vh; }
-            .detail-panel { border-left: none; border-top: 1px solid #e0e0e0; }
-        }
-    </style>
 </head>
 <body>
-    <div class="header">
-        <h1><i class="fas fa-file-alt"></i> 泰国政策报告 - 多文档审核系统</h1>
-        <div class="stats">
-            <span><i class="fas fa-file"></i> 文档数: <strong>3</strong></span>
-            <span><i class="fas fa-list"></i> 总章节: <strong id="total-sections">0</strong></span>
-            <span><i class="fas fa-bolt"></i> 总事件: <strong id="total-events">0</strong></span>
-        </div>
-    </div>
-
-    <div class="tab-bar" id="tab-bar"></div>
-
-    <div class="view-toggle">
-        <button class="view-btn active" data-view="sections"><i class="fas fa-list"></i> 章节视图</button>
-        <button class="view-btn" data-view="events"><i class="fas fa-bolt"></i> 事件视图</button>
-    </div>
-
-    <div class="main-content">
-        <div class="sections-panel" id="sections-panel"></div>
-        <div class="detail-panel" id="detail-panel">
-            <div class="detail-placeholder" id="placeholder">
-                <i class="fas fa-mouse-pointer"></i>
-                <p>点击左侧章节查看详情</p>
+    <div class="app-container">
+        <!-- 顶部导航栏 -->
+        <header class="header">
+            <div class="header-left">
+                <h1><i class="fas fa-map-marked-alt"></i> 泰国政策报告审核系统</h1>
+                <span class="subtitle">多文档思维导图 - 政策事件审核</span>
             </div>
-            <div class="section-detail" id="section-detail"></div>
-            <div class="events-view" id="events-view"></div>
+            <div class="header-right">
+                <div class="stats">
+                    <span class="stat-item"><i class="fas fa-file"></i> 文档: <strong>3</strong></span>
+                    <span class="stat-item"><i class="fas fa-list"></i> 章节: <span id="total-sections">0</span></span>
+                    <span class="stat-item"><i class="fas fa-bolt"></i> 事件: <span id="total-events">0</span></span>
+                    <span class="stat-item"><i class="fas fa-check-circle"></i> 已审核: <span id="reviewed-count">0</span></span>
+                    <span class="stat-item"><i class="fas fa-clock"></i> 待审核: <span id="pending-count">0</span></span>
+                    <span class="stat-item"><i class="fas fa-exclamation-circle"></i> 需补充: <span id="need-more-count">0</span></span>
+                </div>
+                <button id="export-btn" class="btn btn-primary"><i class="fas fa-download"></i> 导出审核报告</button>
+                <button id="save-btn" class="btn btn-secondary"><i class="fas fa-save"></i> 保存进度</button>
+            </div>
+        </header>
+
+        <!-- 文档标签页 -->
+        <div class="tab-bar" id="tab-bar"></div>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 思维导图区域 -->
+            <div class="mindmap-container" id="mindmap">
+                <div class="mindmap-loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>加载思维导图...</p>
+                </div>
+            </div>
+
+            <!-- 侧边栏 -->
+            <aside class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <h2 id="sidebar-title">选择节点查看详情</h2>
+                    <button class="close-btn" id="close-sidebar"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="sidebar-content" id="sidebar-content">
+                    <div class="placeholder">
+                        <i class="fas fa-mouse-pointer"></i>
+                        <p>点击思维导图中的节点查看详细信息</p>
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+        <!-- 审核状态图例 -->
+        <div class="legend">
+            <h3>审核状态图例</h3>
+            <div class="legend-items">
+                <span class="legend-item"><span class="dot reviewed"></span> 已审核</span>
+                <span class="legend-item"><span class="dot pending"></span> 待审核</span>
+                <span class="legend-item"><span class="dot need-more"></span> 需补充</span>
+            </div>
         </div>
     </div>
 
-    <script src="data_tabs.js"></script>
-    <script>
-        let currentDoc = 0;
-        let currentView = 'sections';
-        let currentSection = null;
-
-        // Init tabs
-        function initTabs() {
-            const bar = document.getElementById('tab-bar');
-            documentsData.forEach((doc, i) => {
-                const btn = document.createElement('button');
-                btn.className = 'tab-btn' + (i === 0 ? ' active' : '');
-                btn.textContent = doc.name;
-                btn.onclick = () => switchDoc(i);
-                bar.appendChild(btn);
-            });
-
-            // Stats
-            let totalS = 0, totalE = 0;
-            documentsData.forEach(d => { totalS += d.sections.length; totalE += d.events.length; });
-            document.getElementById('total-sections').textContent = totalS;
-            document.getElementById('total-events').textContent = totalE;
-        }
-
-        function switchDoc(index) {
-            currentDoc = index;
-            currentSection = null;
-            document.querySelectorAll('.tab-btn').forEach((btn, i) => {
-                btn.classList.toggle('active', i === index);
-            });
-            renderSections();
-            renderEvents();
-            resetDetail();
-        }
-
-        function renderSections() {
-            const panel = document.getElementById('sections-panel');
-            const doc = documentsData[currentDoc];
-            panel.innerHTML = '';
-            doc.sections.forEach((s, i) => {
-                const card = document.createElement('div');
-                card.className = 'section-card';
-                card.innerHTML = `
-                    <div class="number">${s.number}</div>
-                    <div class="title">${s.title}</div>
-                    ${s.parent ? `<div class="parent">${s.parent}</div>` : ''}
-                    <div class="preview">${s.content.substring(0, 100)}...</div>
-                `;
-                card.onclick = () => showSection(i);
-                panel.appendChild(card);
-            });
-        }
-
-        function renderEvents() {
-            const view = document.getElementById('events-view');
-            const doc = documentsData[currentDoc];
-            view.innerHTML = '';
-            doc.events.forEach(e => {
-                const card = document.createElement('div');
-                card.className = 'event-card';
-                card.innerHTML = `
-                    <div class="source"><i class="fas fa-book"></i> ${e.source}</div>
-                    <div class="domain"><i class="fas fa-tag"></i> ${e.domain}</div>
-                    <div class="description">${e.description}</div>
-                `;
-                view.appendChild(card);
-            });
-        }
-
-        function showSection(index) {
-            currentSection = index;
-            const doc = documentsData[currentDoc];
-            const s = doc.sections[index];
-
-            // Highlight active card
-            document.querySelectorAll('.section-card').forEach((card, i) => {
-                card.classList.toggle('active', i === index);
-            });
-
-            // Show detail
-            document.getElementById('placeholder').style.display = 'none';
-            document.getElementById('section-detail').style.display = 'block';
-            document.getElementById('events-view').style.display = 'none';
-
-            const detail = document.getElementById('section-detail');
-            detail.innerHTML = `
-                <h2>${s.title}</h2>
-                <div class="meta">
-                    <span>编号: ${s.number}</span>
-                    ${s.parent ? ` | 父级: ${s.parent}` : ''}
+    <!-- 注释模态框 -->
+    <div class="modal" id="note-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-sticky-note"></i> 添加审核注释</h3>
+                <button class="close-btn" id="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <textarea id="note-text" placeholder="输入审核注释...&#10;&#10;例如：&#10;- 该政策已过时，需要更新&#10;- 缺少2026年最新数据&#10;- 建议补充泰国东部经济走廊最新政策"></textarea>
+                <div class="note-tags">
+                    <label>快速标签：</label>
+                    <button class="tag-btn" data-tag="需要更新">需要更新</button>
+                    <button class="tag-btn" data-tag="内容缺失">内容缺失</button>
+                    <button class="tag-btn" data-tag="政策过时">政策过时</button>
+                    <button class="tag-btn" data-tag="建议补充">建议补充</button>
                 </div>
-                <div class="content">${s.content}</div>
-            `;
-        }
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-note">取消</button>
+                <button class="btn btn-primary" id="save-note">保存注释</button>
+            </div>
+        </div>
+    </div>
 
-        function resetDetail() {
-            document.getElementById('placeholder').style.display = 'flex';
-            document.getElementById('section-detail').style.display = 'none';
-            document.getElementById('events-view').style.display = 'none';
-        }
-
-        // View toggle
-        document.querySelectorAll('.view-btn').forEach(btn => {
-            btn.onclick = () => {
-                document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                const view = btn.dataset.view;
-                currentView = view;
-
-                if (view === 'sections') {
-                    document.getElementById('sections-panel').style.display = 'block';
-                    if (currentSection !== null) {
-                        document.getElementById('section-detail').style.display = 'block';
-                        document.getElementById('events-view').style.display = 'none';
-                    }
-                } else {
-                    document.getElementById('sections-panel').style.display = 'none';
-                    document.getElementById('section-detail').style.display = 'none';
-                    document.getElementById('events-view').style.display = 'block';
-                    document.getElementById('placeholder').style.display = 'none';
-                }
-            };
-        });
-
-        // Init
-        initTabs();
-        renderSections();
-        renderEvents();
-    </script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="data_tabs.js"></script>
+    <script src="mindmap_tabs.js"></script>
+    <script src="app_tabs.js"></script>
 </body>
 </html>
