@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>泰国政策报告 - 多文档审核系统</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f5f7fa; color: #333; }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; padding: 16px 24px;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header h1 { font-size: 20px; }
+        .header .stats { display: flex; gap: 16px; font-size: 14px; }
+
+        /* Tab Bar */
+        .tab-bar {
+            background: white; border-bottom: 2px solid #e0e0e0;
+            display: flex; padding: 0 24px; gap: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .tab-btn {
+            padding: 12px 24px; border: none; background: transparent;
+            font-size: 14px; font-weight: 500; color: #666; cursor: pointer;
+            border-bottom: 3px solid transparent; transition: all 0.2s;
+        }
+        .tab-btn:hover { color: #333; background: #f8f9fa; }
+        .tab-btn.active { color: #667eea; border-bottom-color: #667eea; background: #f0f2ff; }
+
+        /* View Toggle */
+        .view-toggle {
+            display: flex; gap: 8px; padding: 12px 24px; background: white;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .view-btn {
+            padding: 6px 16px; border: 1px solid #ddd; border-radius: 20px;
+            background: white; font-size: 13px; cursor: pointer; transition: all 0.2s;
+        }
+        .view-btn.active { background: #667eea; color: white; border-color: #667eea; }
+
+        /* Main Content */
+        .main-content { display: flex; height: calc(100vh - 140px); }
+
+        /* Left Panel - Sections */
+        .sections-panel {
+            flex: 1; overflow-y: auto; padding: 16px;
+            background: #f5f7fa;
+        }
+        .section-card {
+            background: white; border-radius: 8px; padding: 16px;
+            margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            cursor: pointer; transition: all 0.2s; border-left: 4px solid #667eea;
+        }
+        .section-card:hover { transform: translateX(4px); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+        .section-card.active { border-left-color: #764ba2; background: #f8f6ff; }
+        .section-card .number { font-size: 12px; color: #999; margin-bottom: 4px; }
+        .section-card .title { font-size: 15px; font-weight: 600; color: #333; margin-bottom: 4px; }
+        .section-card .parent { font-size: 12px; color: #667eea; }
+        .section-card .preview { font-size: 13px; color: #666; margin-top: 8px; line-height: 1.5; }
+
+        /* Right Panel - Detail / Events */
+        .detail-panel {
+            flex: 2; overflow-y: auto; padding: 24px; background: white;
+            border-left: 1px solid #e0e0e0;
+        }
+        .detail-placeholder {
+            display: flex; flex-direction: column; align-items: center;
+            justify-content: center; height: 100%; color: #999;
+        }
+        .detail-placeholder i { font-size: 48px; margin-bottom: 16px; }
+
+        /* Section Detail */
+        .section-detail { display: none; }
+        .section-detail.active { display: block; }
+        .section-detail h2 { font-size: 22px; margin-bottom: 8px; color: #333; }
+        .section-detail .meta { font-size: 13px; color: #888; margin-bottom: 16px; }
+        .section-detail .content {
+            font-size: 15px; line-height: 1.8; color: #444;
+            white-space: pre-wrap; background: #f9f9fb; padding: 16px;
+            border-radius: 8px; border: 1px solid #e8e8e8;
+        }
+
+        /* Events View */
+        .events-view { display: none; }
+        .events-view.active { display: block; }
+        .event-card {
+            background: white; border-radius: 8px; padding: 16px;
+            margin-bottom: 12px; border: 1px solid #e8e8e8;
+            transition: all 0.2s;
+        }
+        .event-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .event-card .source { font-size: 12px; color: #667eea; margin-bottom: 4px; }
+        .event-card .domain { font-size: 14px; font-weight: 600; color: #333; margin-bottom: 8px; }
+        .event-card .description { font-size: 14px; line-height: 1.6; color: #555; white-space: pre-wrap; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-content { flex-direction: column; height: auto; }
+            .sections-panel { max-height: 40vh; }
+            .detail-panel { border-left: none; border-top: 1px solid #e0e0e0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1><i class="fas fa-file-alt"></i> 泰国政策报告 - 多文档审核系统</h1>
+        <div class="stats">
+            <span><i class="fas fa-file"></i> 文档数: <strong>3</strong></span>
+            <span><i class="fas fa-list"></i> 总章节: <strong id="total-sections">0</strong></span>
+            <span><i class="fas fa-bolt"></i> 总事件: <strong id="total-events">0</strong></span>
+        </div>
+    </div>
+
+    <div class="tab-bar" id="tab-bar"></div>
+
+    <div class="view-toggle">
+        <button class="view-btn active" data-view="sections"><i class="fas fa-list"></i> 章节视图</button>
+        <button class="view-btn" data-view="events"><i class="fas fa-bolt"></i> 事件视图</button>
+    </div>
+
+    <div class="main-content">
+        <div class="sections-panel" id="sections-panel"></div>
+        <div class="detail-panel" id="detail-panel">
+            <div class="detail-placeholder" id="placeholder">
+                <i class="fas fa-mouse-pointer"></i>
+                <p>点击左侧章节查看详情</p>
+            </div>
+            <div class="section-detail" id="section-detail"></div>
+            <div class="events-view" id="events-view"></div>
+        </div>
+    </div>
+
+    <script src="data_tabs.js"></script>
+    <script>
+        let currentDoc = 0;
+        let currentView = 'sections';
+        let currentSection = null;
+
+        // Init tabs
+        function initTabs() {
+            const bar = document.getElementById('tab-bar');
+            documentsData.forEach((doc, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'tab-btn' + (i === 0 ? ' active' : '');
+                btn.textContent = doc.name;
+                btn.onclick = () => switchDoc(i);
+                bar.appendChild(btn);
+            });
+
+            // Stats
+            let totalS = 0, totalE = 0;
+            documentsData.forEach(d => { totalS += d.sections.length; totalE += d.events.length; });
+            document.getElementById('total-sections').textContent = totalS;
+            document.getElementById('total-events').textContent = totalE;
+        }
+
+        function switchDoc(index) {
+            currentDoc = index;
+            currentSection = null;
+            document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', i === index);
+            });
+            renderSections();
+            renderEvents();
+            resetDetail();
+        }
+
+        function renderSections() {
+            const panel = document.getElementById('sections-panel');
+            const doc = documentsData[currentDoc];
+            panel.innerHTML = '';
+            doc.sections.forEach((s, i) => {
+                const card = document.createElement('div');
+                card.className = 'section-card';
+                card.innerHTML = `
+                    <div class="number">${s.number}</div>
+                    <div class="title">${s.title}</div>
+                    ${s.parent ? `<div class="parent">${s.parent}</div>` : ''}
+                    <div class="preview">${s.content.substring(0, 100)}...</div>
+                `;
+                card.onclick = () => showSection(i);
+                panel.appendChild(card);
+            });
+        }
+
+        function renderEvents() {
+            const view = document.getElementById('events-view');
+            const doc = documentsData[currentDoc];
+            view.innerHTML = '';
+            doc.events.forEach(e => {
+                const card = document.createElement('div');
+                card.className = 'event-card';
+                card.innerHTML = `
+                    <div class="source"><i class="fas fa-book"></i> ${e.source}</div>
+                    <div class="domain"><i class="fas fa-tag"></i> ${e.domain}</div>
+                    <div class="description">${e.description}</div>
+                `;
+                view.appendChild(card);
+            });
+        }
+
+        function showSection(index) {
+            currentSection = index;
+            const doc = documentsData[currentDoc];
+            const s = doc.sections[index];
+
+            // Highlight active card
+            document.querySelectorAll('.section-card').forEach((card, i) => {
+                card.classList.toggle('active', i === index);
+            });
+
+            // Show detail
+            document.getElementById('placeholder').style.display = 'none';
+            document.getElementById('section-detail').style.display = 'block';
+            document.getElementById('events-view').style.display = 'none';
+
+            const detail = document.getElementById('section-detail');
+            detail.innerHTML = `
+                <h2>${s.title}</h2>
+                <div class="meta">
+                    <span>编号: ${s.number}</span>
+                    ${s.parent ? ` | 父级: ${s.parent}` : ''}
+                </div>
+                <div class="content">${s.content}</div>
+            `;
+        }
+
+        function resetDetail() {
+            document.getElementById('placeholder').style.display = 'flex';
+            document.getElementById('section-detail').style.display = 'none';
+            document.getElementById('events-view').style.display = 'none';
+        }
+
+        // View toggle
+        document.querySelectorAll('.view-btn').forEach(btn => {
+            btn.onclick = () => {
+                document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const view = btn.dataset.view;
+                currentView = view;
+
+                if (view === 'sections') {
+                    document.getElementById('sections-panel').style.display = 'block';
+                    if (currentSection !== null) {
+                        document.getElementById('section-detail').style.display = 'block';
+                        document.getElementById('events-view').style.display = 'none';
+                    }
+                } else {
+                    document.getElementById('sections-panel').style.display = 'none';
+                    document.getElementById('section-detail').style.display = 'none';
+                    document.getElementById('events-view').style.display = 'block';
+                    document.getElementById('placeholder').style.display = 'none';
+                }
+            };
+        });
+
+        // Init
+        initTabs();
+        renderSections();
+        renderEvents();
+    </script>
+</body>
+</html>
