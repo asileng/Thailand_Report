@@ -36,7 +36,8 @@ def xml_to_json(xml_path, json_path):
     data = {
         "title": "泰国投资报告 - 参考资料审核",
         "subtitle": "对外投资合作国别（地区）指南-泰国（2025年版）",
-        "sections": []
+        "sections": [],
+        "entities": []  # 所有实体列表
     }
 
     for section in root.findall('section'):
@@ -68,12 +69,39 @@ def xml_to_json(xml_path, json_path):
             url = url.rstrip('。')  # 移除中文句号
 
             if url:
+                # 获取链接功能分类
+                func_elem = link_elem.find('function')
+                source_type = func_elem.get('source_type', '参考来源') if func_elem is not None else '参考来源'
+                content_type = func_elem.get('content_type', '参考来源') if func_elem is not None else '参考来源'
+
                 links.append({
                     "id": f"link_{i}",
                     "url": url,
-                    "description": description
+                    "description": description,
+                    "source_type": source_type,
+                    "content_type": content_type
                 })
             i += 1
+
+        # 提取实体
+        features = []
+        features_elem = section.find('features')
+        if features_elem is not None:
+            for feature_elem in features_elem.findall('feature'):
+                feature_type = feature_elem.get('type', '未知')
+                name_elem = feature_elem.find('name')
+                year_elem = feature_elem.find('year')
+
+                feature_data = {
+                    "type": feature_type,
+                    "name": name_elem.text if name_elem is not None else "",
+                    "year": year_elem.text if year_elem is not None else None
+                }
+                features.append(feature_data)
+
+                # 添加到全局实体列表
+                if feature_data["name"] and feature_data["name"] not in [e["name"] for e in data["entities"]]:
+                    data["entities"].append(feature_data)
 
         section_data = {
             "id": f"section_{section_id}",
@@ -81,6 +109,7 @@ def xml_to_json(xml_path, json_path):
             "title": header.replace('## ', '').strip(),
             "content": content,
             "links": links,
+            "features": features,  # 添加实体列表
             "review_status": "pending",  # pending, reviewed, need-more
             "notes": [],
             "coverage_status": None  # complete, partial, missing
@@ -98,7 +127,7 @@ def xml_to_json(xml_path, json_path):
     return data
 
 if __name__ == "__main__":
-    xml_path = r"..\参考报告1_chapter5_with_descriptions.xml"
+    xml_path = r"..\参考报告1_chapter5_final.xml"
     json_path = "data.js"
 
     # 读取XML并转换
