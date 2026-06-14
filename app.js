@@ -4,8 +4,8 @@ class ThailandReportApp {
         this.data = reportData;
         this.mindmap = null;
         this.currentNode = null;
-        this.dataManager = window.reviewDataManager;
-        this.reviewData = this.dataManager.loadData();
+        this.dataManager = window.xmlDataManager;
+        this.reviewData = this.dataManager.loadReviewData();
 
         this.init();
     }
@@ -434,11 +434,11 @@ class ThailandReportApp {
 
     // 数据持久化
     loadReviewData() {
-        return this.dataManager.loadData();
+        return this.dataManager.loadReviewData();
     }
 
     saveReviewData() {
-        this.dataManager.saveData(this.reviewData);
+        this.dataManager.saveReviewData();
     }
 
     saveProgress() {
@@ -464,18 +464,18 @@ class ThailandReportApp {
 
     // 导出报告
     exportReport() {
-        const report = this.generateReport();
-        const blob = new Blob([report], { type: 'text/plain;charset=utf-8' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `泰国报告审核报告_${new Date().toISOString().split('T')[0]}.txt`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
+        // 询问用户导出格式
+        const format = confirm('选择导出格式：\n\n确定 = XML格式（推荐，可导入）\n取消 = 文本格式');
 
-        this.showNotification('审核报告已导出');
+        if (format) {
+            // 导出XML格式
+            this.dataManager.exportReviewXMLFile();
+            this.showNotification('审核数据已导出为XML格式');
+        } else {
+            // 导出文本格式
+            this.dataManager.exportReportTextFile(this.data.sections);
+            this.showNotification('审核报告已导出为文本格式');
+        }
     }
 
     generateReport() {

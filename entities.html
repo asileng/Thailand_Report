@@ -261,13 +261,13 @@
     </div>
 
     <script src="data.js"></script>
-    <script src="shared-data.js"></script>
+    <script src="xml-data-manager.js"></script>
     <script>
         // 实体覆盖检查逻辑
         class EntityCoverageChecker {
             constructor(data) {
                 this.data = data;
-                this.dataManager = window.reviewDataManager;
+                this.dataManager = window.xmlDataManager;
                 this.entities = this.processEntities();
                 this.init();
             }
