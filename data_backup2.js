@@ -66,12 +66,7 @@ const reportData = {
       "features": [
         {
           "type": "法律",
-          "name": "2017年《公共采购和 供货监督法》",
-          "year": "2017"
-        },
-        {
-          "type": "法律",
-          "name": "2017年《公 共采购和供货监督法》",
+          "name": "2017年《公共采购和供货监督法》",
           "year": "2017"
         },
         {
@@ -148,7 +143,7 @@ const reportData = {
         },
         {
           "type": "法律",
-          "name": "《植物进口 检疫规章》",
+          "name": "《植物进口检疫规章》",
           "year": null
         }
       ],
@@ -296,7 +291,7 @@ const reportData = {
         },
         {
           "type": "法律",
-          "name": "《工业园管理条 例》",
+          "name": "《工业园管理条例》",
           "year": null
         },
         {
@@ -322,11 +317,6 @@ const reportData = {
         {
           "type": "法案",
           "name": "Industrial Estate Authority of Thailand Act",
-          "year": null
-        },
-        {
-          "type": "政策",
-          "name": "资促进法》《东部经济走廊",
           "year": null
         },
         {
@@ -367,11 +357,6 @@ const reportData = {
         {
           "type": "政策",
           "name": "得工业区土地所有权；园区",
-          "year": null
-        },
-        {
-          "type": "政策",
-          "name": "EEC",
           "year": null
         }
       ],
@@ -450,7 +435,7 @@ const reportData = {
         },
         {
           "type": "法律",
-          "name": "《税 法典》",
+          "name": "《税法典》",
           "year": null
         },
         {
@@ -461,11 +446,6 @@ const reportData = {
         {
           "type": "法律",
           "name": "《证券交易法》",
-          "year": "1992"
-        },
-        {
-          "type": "法律",
-          "name": "《民 商法典》",
           "year": "1992"
         },
         {
@@ -549,7 +529,7 @@ const reportData = {
       "features": [
         {
           "type": "法律",
-          "name": "《2020-2027PPP 项 目规划》",
+          "name": "《2020-2027PPP 项目规划》",
           "year": "2025"
         },
         {
@@ -655,17 +635,7 @@ const reportData = {
         },
         {
           "type": "政策",
-          "name": "经济特区",
-          "year": null
-        },
-        {
-          "type": "政策",
           "name": "泰国《东部经济走廊特区",
-          "year": null
-        },
-        {
-          "type": "政策",
-          "name": "发展政策，明确了经济特区",
           "year": null
         },
         {
@@ -687,32 +657,12 @@ const reportData = {
       "features": [
         {
           "type": "法律",
-          "name": "《东部经济走廊特 区法案》",
+          "name": "《东部经济走廊特区法案》",
           "year": "2015"
         },
         {
           "type": "政策",
-          "name": "经济特区",
-          "year": null
-        },
-        {
-          "type": "政策",
           "name": "【东部经济走廊特区",
-          "year": null
-        },
-        {
-          "type": "政策",
-          "name": "015年提出东部经济走廊",
-          "year": null
-        },
-        {
-          "type": "政策",
-          "name": "8年5月，《东部经济走廊",
-          "year": null
-        },
-        {
-          "type": "政策",
-          "name": "当前，东部经济走廊",
           "year": null
         },
         {
@@ -738,11 +688,6 @@ const reportData = {
         {
           "type": "政策",
           "name": "（3）中西部经济走廊",
-          "year": null
-        },
-        {
-          "type": "政策",
-          "name": "通首都曼谷和东部经济走廊",
           "year": null
         },
         {
@@ -812,11 +757,6 @@ const reportData = {
         },
         {
           "type": "政策",
-          "name": "EEC",
-          "year": null
-        },
-        {
-          "type": "政策",
           "name": "SEZ）来刺激经济活动。10个边境经济特区分别是：达",
           "year": null
         }
@@ -835,11 +775,6 @@ const reportData = {
         {
           "type": "法律",
           "name": "《投资促进法》",
-          "year": null
-        },
-        {
-          "type": "政策",
-          "name": "在泰国特别经济开发区",
           "year": null
         },
         {
@@ -874,7 +809,7 @@ const reportData = {
         },
         {
           "type": "法律",
-          "name": "《劳动关系 法》",
+          "name": "《劳动关系法》",
           "year": "1998"
         },
         {
@@ -899,7 +834,7 @@ const reportData = {
         },
         {
           "type": "法律",
-          "name": "《平等 机会和反歧视法》",
+          "name": "《平等机会和反歧视法》",
           "year": null
         },
         {
@@ -980,11 +915,6 @@ const reportData = {
           "type": "法案",
           "name": "Land Code Promulgating Act",
           "year": null
-        },
-        {
-          "type": "政策",
-          "name": "动产租赁法》和《工业园区",
-          "year": null
         }
       ],
       "review_status": "pending",
@@ -1046,7 +976,7 @@ const reportData = {
         },
         {
           "type": "法律",
-          "name": "《投资 促进法》",
+          "name": "《投资促进法》",
           "year": null
         },
         {
@@ -1057,11 +987,6 @@ const reportData = {
         {
           "type": "法律",
           "name": "《石油法》",
-          "year": null
-        },
-        {
-          "type": "法律",
-          "name": "《投资促进法》",
           "year": null
         },
         {
@@ -1134,7 +1059,7 @@ const reportData = {
         },
         {
           "type": "法律",
-          "name": "《国家森林 保护法》",
+          "name": "《国家森林保护法》",
           "year": "1961"
         },
         {
@@ -1159,7 +1084,7 @@ const reportData = {
         },
         {
           "type": "法律",
-          "name": "《清洁和秩序管理 法》",
+          "name": "《清洁和秩序管理法》",
           "year": "1961"
         },
         {
@@ -1179,17 +1104,12 @@ const reportData = {
         },
         {
           "type": "法律",
-          "name": "《总理办公室 关于防止和消除石油污染法规》",
-          "year": "1961"
-        },
-        {
-          "type": "法律",
-          "name": "《总理办公室关于保护和利用生物多样 性的条例》",
-          "year": "1961"
-        },
-        {
-          "type": "法律",
           "name": "《总理办公室关于防止和消除石油污染法规》",
+          "year": "1961"
+        },
+        {
+          "type": "法律",
+          "name": "《总理办公室关于保护和利用生物多样性的条例》",
           "year": "1961"
         },
         {
@@ -1229,7 +1149,7 @@ const reportData = {
         },
         {
           "type": "法律",
-          "name": "《国家环境质量促进和保护法 （Enhancement and Conservation of the National Environmental Quality Act）。此外，泰国 自然资源和环境部还发布了一系列关于大气、噪音、水、土壤等方面污染控制和保护的 公告。 \n\n《国家环境促进及保护条例》",
+          "name": "《国家环境质量促进和保护法 （Enhancement and Conservation of the National Environmental Quality Act）》",
           "year": "1992"
         },
         {
@@ -1259,7 +1179,7 @@ const reportData = {
         },
         {
           "type": "法律",
-          "name": "《陆路运 输法》",
+          "name": "《陆路运输法》",
           "year": null
         },
         {
@@ -1329,7 +1249,7 @@ const reportData = {
         },
         {
           "type": "法律",
-          "name": "《公 私合营投资法》",
+          "name": "《公私合营投资法》",
           "year": null
         },
         {
@@ -1634,11 +1554,6 @@ const reportData = {
         },
         {
           "type": "法律",
-          "name": "《个人数据保护 法》",
-          "year": "2019"
-        },
-        {
-          "type": "法律",
           "name": "《个人数据保护法》",
           "year": "2019"
         },
@@ -1659,7 +1574,7 @@ const reportData = {
         },
         {
           "type": "法律",
-          "name": "《关于加强数字经济领域投资合作的谅解备 忘录》",
+          "name": "《关于加强数字经济领域投资合作的谅解备忘录》",
           "year": "2022"
         },
         {
@@ -1669,7 +1584,7 @@ const reportData = {
         },
         {
           "type": "法律",
-          "name": "《以 BCG 经济模式 推动泰国发展的行动计划（2021-2027）》",
+          "name": "《以 BCG 经济模式推动泰国发展的行动计划（2021-2027）》",
           "year": "2021"
         },
         {
@@ -1679,7 +1594,7 @@ const reportData = {
         },
         {
           "type": "法律",
-          "name": "《2015-2036年能源效率发展计 划》",
+          "name": "《2015-2036年能源效率发展计划》",
           "year": "2021"
         },
         {
@@ -1704,7 +1619,7 @@ const reportData = {
         },
         {
           "type": "法律",
-          "name": "《国家废弃物 管理总体规划（2016 - 2021）》",
+          "name": "《国家废弃物管理总体规划（2016 - 2021）》",
           "year": null
         },
         {
@@ -1716,11 +1631,6 @@ const reportData = {
           "type": "法律",
           "name": "《泰国综合能源蓝图》",
           "year": "2036"
-        },
-        {
-          "type": "法律",
-          "name": "《2015-2036年能源效率发展计划》",
-          "year": null
         },
         {
           "type": "法律",
@@ -1744,7 +1654,7 @@ const reportData = {
         },
         {
           "type": "法案",
-          "name": "FactoryAct",
+          "name": "Factory Act",
           "year": null
         },
         {
@@ -1759,52 +1669,12 @@ const reportData = {
         },
         {
           "type": "政策",
-          "name": "造数字园区",
-          "year": null
-        },
-        {
-          "type": "政策",
-          "name": "的南部边境地区和经济特区",
-          "year": null
-        },
-        {
-          "type": "政策",
-          "name": "商务部与泰国东部经济走廊",
-          "year": null
-        },
-        {
-          "type": "政策",
           "name": "EEC）计划，数字经济是",
           "year": null
         },
         {
           "type": "政策",
-          "name": "EEC",
-          "year": null
-        },
-        {
-          "type": "政策",
-          "name": "BCG（“生物-循环-绿色”）发展模式，2021年升级为国家战略，并列",
-          "year": null
-        },
-        {
-          "type": "政策",
-          "name": "BCG",
-          "year": null
-        },
-        {
-          "type": "政策",
           "name": "BCG经济模式推动泰国发展的行动计划（2021-2027）》，",
-          "year": null
-        },
-        {
-          "type": "政策",
-          "name": "BCG模式投资的支持优惠力度。",
-          "year": null
-        },
-        {
-          "type": "政策",
-          "name": "BCG发展模式高度契合。近年来，中国新能源",
           "year": null
         }
       ],
@@ -1895,18 +1765,7 @@ const reportData = {
       "title": "8.2.3 入驻工业园区",
       "content": "## 8.2.3 入驻工业园区 制造类企业尽量选在经过泰工业园区管理局（IEAT）认可的工业园内进行投资，以 享受稳定的优惠政策和相对完善的后勤保障服务。",
       "links": [],
-      "features": [
-        {
-          "type": "政策",
-          "name": "入驻工业园区",
-          "year": null
-        },
-        {
-          "type": "政策",
-          "name": "业尽量选在经过泰工业园区",
-          "year": null
-        }
-      ],
+      "features": [],
       "review_status": "pending",
       "notes": [],
       "coverage_status": null
@@ -2075,7 +1934,7 @@ const reportData = {
         },
         {
           "type": "法律",
-          "name": "《公 众有限责任公司法案》",
+          "name": "《公众有限责任公司法案》",
           "year": "1992"
         },
         {
@@ -2115,11 +1974,6 @@ const reportData = {
         },
         {
           "type": "法律",
-          "name": "《商标 法》",
-          "year": "1991"
-        },
-        {
-          "type": "法律",
           "name": "《税法典》",
           "year": null
         },
@@ -2136,21 +1990,6 @@ const reportData = {
         {
           "type": "法律",
           "name": "《对外投资合作国别（地区）指南》",
-          "year": null
-        },
-        {
-          "type": "法律",
-          "name": "《泰国》",
-          "year": "1991"
-        },
-        {
-          "type": "法律",
-          "name": "《指南》",
-          "year": null
-        },
-        {
-          "type": "政策",
-          "name": "制造分会、罗勇园区",
           "year": null
         }
       ],

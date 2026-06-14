@@ -318,6 +318,16 @@ const reportData = {
           "type": "法案",
           "name": "Industrial Estate Authority of Thailand Act",
           "year": null
+        },
+        {
+          "type": "政策",
+          "name": "《东部经济走廊特别开发区",
+          "year": null
+        },
+        {
+          "type": "政策",
+          "name": "Zone）和自由业务园区",
+          "year": null
         }
       ],
       "review_status": "pending",
@@ -489,8 +499,13 @@ const reportData = {
       "features": [
         {
           "type": "法律",
-          "name": "《2020-2027PPP项目规划》",
+          "name": "《2020-2027PPP 项目规划》",
           "year": "2025"
+        },
+        {
+          "type": "政策",
+          "name": "EEC）内的五大基础设施项目多属于",
+          "year": null
         }
       ],
       "review_status": "pending",
@@ -582,6 +597,16 @@ const reportData = {
           "type": "法律",
           "name": "《东部经济走廊特区法案》",
           "year": null
+        },
+        {
+          "type": "政策",
+          "name": "泰国《东部经济走廊特区",
+          "year": null
+        },
+        {
+          "type": "政策",
+          "name": "EEC）的定位和发展政策，明确了经济特区内的产业发展规划、投资促进方向",
+          "year": null
         }
       ],
       "review_status": "pending",
@@ -599,6 +624,36 @@ const reportData = {
           "type": "法律",
           "name": "《东部经济走廊特区法案》",
           "year": "2015"
+        },
+        {
+          "type": "政策",
+          "name": "【东部经济走廊特区",
+          "year": null
+        },
+        {
+          "type": "政策",
+          "name": "【其他经济走廊特区",
+          "year": null
+        },
+        {
+          "type": "政策",
+          "name": "批准新增4个特别经济走廊",
+          "year": null
+        },
+        {
+          "type": "政策",
+          "name": "【边境经济特区",
+          "year": null
+        },
+        {
+          "type": "政策",
+          "name": "EEC）计划。2018年5月，《东部经济走廊特",
+          "year": null
+        },
+        {
+          "type": "政策",
+          "name": "SEZ）来刺激经济活动。10个边境经济特区分别是：达",
+          "year": null
         }
       ],
       "review_status": "pending",
@@ -615,6 +670,11 @@ const reportData = {
         {
           "type": "法律",
           "name": "《投资促进法》",
+          "year": null
+        },
+        {
+          "type": "政策",
+          "name": "【特别经济开发区",
           "year": null
         }
       ],
@@ -950,6 +1010,11 @@ const reportData = {
         {
           "type": "法律",
           "name": "1992年《国家环境质量促进和保护法》",
+          "year": "1992"
+        },
+        {
+          "type": "法律",
+          "name": "《国家环境质量促进和保护法 （Enhancement and Conservation of the National Environmental Quality Act）》",
           "year": "1992"
         },
         {
@@ -1384,7 +1449,7 @@ const reportData = {
         },
         {
           "type": "法律",
-          "name": "《以BCG经济模式推动泰国发展的行动计划（2021-2027）》",
+          "name": "《以 BCG 经济模式推动泰国发展的行动计划（2021-2027）》",
           "year": "2021"
         },
         {
@@ -1419,7 +1484,7 @@ const reportData = {
         },
         {
           "type": "法律",
-          "name": "《国家废弃物管理总体规划（2016-2021）》",
+          "name": "《国家废弃物管理总体规划（2016 - 2021）》",
           "year": null
         },
         {
@@ -1436,6 +1501,11 @@ const reportData = {
           "type": "法律",
           "name": "《20年能效发展计划》",
           "year": "2018"
+        },
+        {
+          "type": "法律",
+          "name": "《以BCG经济模式推动泰国发展的行动计划（2021-2027）》",
+          "year": "2022"
         },
         {
           "type": "法案",
@@ -1464,7 +1534,12 @@ const reportData = {
         },
         {
           "type": "政策",
-          "name": "BCG（“生物-循环-绿色”）发展模式，2021年升级为国家战略，并列",
+          "name": "EEC）计划，数字经济是",
+          "year": null
+        },
+        {
+          "type": "政策",
+          "name": "BCG经济模式推动泰国发展的行动计划（2021-2027）》，",
           "year": null
         }
       ],
