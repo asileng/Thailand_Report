@@ -3,56 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>参考文献提取完整性审核</title>
+    <title>泰国政策报告 - 多文档审核系统</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="app-container">
+        <!-- 顶部导航栏 -->
         <header class="header">
             <div class="header-left">
-                <h1><i class="fas fa-search"></i> 参考文献提取完整性审核</h1>
-                <span class="subtitle">检查政策文件内容是否完整提取</span>
+                <h1><i class="fas fa-map-marked-alt"></i> 泰国政策报告审核系统</h1>
+                <span class="subtitle">多文档思维导图 - 政策事件审核</span>
             </div>
             <div class="header-right">
                 <div class="stats">
+                    <span class="stat-item"><i class="fas fa-file"></i> 文档: <strong>3</strong></span>
+                    <span class="stat-item"><i class="fas fa-list"></i> 章节: <span id="total-sections">0</span></span>
+                    <span class="stat-item"><i class="fas fa-bolt"></i> 事件: <span id="total-events">0</span></span>
                     <span class="stat-item"><i class="fas fa-check-circle"></i> 已审核: <span id="reviewed-count">0</span></span>
                     <span class="stat-item"><i class="fas fa-clock"></i> 待审核: <span id="pending-count">0</span></span>
                     <span class="stat-item"><i class="fas fa-exclamation-circle"></i> 需补充: <span id="need-more-count">0</span></span>
                 </div>
-                <button id="export-btn" class="btn btn-primary"><i class="fas fa-download"></i> 导出报告</button>
-                <button id="save-btn" class="btn btn-secondary"><i class="fas fa-save"></i> 保存</button>
+                <a href="links.html" class="btn btn-secondary"><i class="fas fa-link"></i> 参考文献审核</a>
+                <a href="entities.html" class="btn btn-secondary"><i class="fas fa-search"></i> 实体覆盖检查</a>
+                <button id="export-btn" class="btn btn-primary"><i class="fas fa-download"></i> 导出审核报告</button>
+                <button id="save-btn" class="btn btn-secondary"><i class="fas fa-save"></i> 保存进度</button>
             </div>
         </header>
 
         <!-- 文档标签页 -->
         <div class="tab-bar" id="tab-bar"></div>
 
+        <!-- 主内容区 -->
         <main class="main-content">
+            <!-- 思维导图区域 -->
             <div class="mindmap-container" id="mindmap">
                 <div class="mindmap-loading">
                     <i class="fas fa-spinner fa-spin"></i>
-                    <p>加载中...</p>
+                    <p>加载思维导图...</p>
                 </div>
             </div>
 
+            <!-- 侧边栏 -->
             <aside class="sidebar" id="sidebar">
                 <div class="sidebar-header">
-                    <h2 id="sidebar-title">选择节点查看</h2>
+                    <h2 id="sidebar-title">选择节点查看详情</h2>
                     <button class="close-btn" id="close-sidebar"><i class="fas fa-times"></i></button>
                 </div>
                 <div class="sidebar-content" id="sidebar-content">
                     <div class="placeholder">
                         <i class="fas fa-mouse-pointer"></i>
-                        <p>点击思维导图节点审核内容完整性</p>
+                        <p>点击思维导图中的节点查看详细信息</p>
                     </div>
                 </div>
             </aside>
         </main>
 
+        <!-- 审核状态图例 -->
         <div class="legend">
+            <h3>审核状态图例</h3>
             <div class="legend-items">
-                <span class="legend-item"><span class="dot reviewed"></span> 完整</span>
+                <span class="legend-item"><span class="dot reviewed"></span> 已审核</span>
                 <span class="legend-item"><span class="dot pending"></span> 待审核</span>
                 <span class="legend-item"><span class="dot need-more"></span> 需补充</span>
             </div>
@@ -63,22 +74,22 @@
     <div class="modal" id="note-modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3><i class="fas fa-sticky-note"></i> 记录问题</h3>
+                <h3><i class="fas fa-sticky-note"></i> 添加审核注释</h3>
                 <button class="close-btn" id="close-modal"><i class="fas fa-times"></i></button>
             </div>
             <div class="modal-body">
-                <textarea id="note-text" placeholder="记录提取问题...&#10;&#10;例如：&#10;- 内容截断，缺少后半部分&#10;- 表格数据未提取&#10;- 缺少关键政策条款"></textarea>
+                <textarea id="note-text" placeholder="输入审核注释...&#10;&#10;例如：&#10;- 该政策已过时，需要更新&#10;- 缺少2026年最新数据&#10;- 建议补充泰国东部经济走廊最新政策"></textarea>
                 <div class="note-tags">
                     <label>快速标签：</label>
-                    <button class="tag-btn" data-tag="内容截断">内容截断</button>
-                    <button class="tag-btn" data-tag="表格丢失">表格丢失</button>
-                    <button class="tag-btn" data-tag="缺少条款">缺少条款</button>
-                    <button class="tag-btn" data-tag="格式错误">格式错误</button>
+                    <button class="tag-btn" data-tag="需要更新">需要更新</button>
+                    <button class="tag-btn" data-tag="内容缺失">内容缺失</button>
+                    <button class="tag-btn" data-tag="政策过时">政策过时</button>
+                    <button class="tag-btn" data-tag="建议补充">建议补充</button>
                 </div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" id="cancel-note">取消</button>
-                <button class="btn btn-primary" id="save-note">保存</button>
+                <button class="btn btn-primary" id="save-note">保存注释</button>
             </div>
         </div>
     </div>
